@@ -35,6 +35,18 @@
 #
 #   BULLET_ROOT - Can be set to bullet install path or Windows build path
 
+if (NOT BULLET_ROOT)
+  if (NOT "$ENV{BULLET_ROOT}" STREQUAL "")
+    set(BULLET_ROOT $ENV{BULLET_ROOT})
+  elseif (NOT "$ENV{BULLETROOT}" STREQUAL "")
+    set(BULLET_ROOT $ENV{BULLETROOT})
+  elseif (NOT "$ENV{BULLET_HOME}" STREQUAL "")
+    set(BULLET_ROOT $ENV{BULLET_HOME})
+  elseif (NOT "$ENV{BULLETHOME}" STREQUAL "")
+    set(BULLET_ROOT $ENV{BULLETHOME})
+  endif()
+endif (NOT BULLET_ROOT)
+
 macro(_FIND_BULLET_LIBRARY _var)
   find_library(${_var}
      NAMES
